@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Cue : MonoBehaviour {
 
-	private float speed = -300.0f;
+	private float speed = -400.0f;
+	private float accel = 1.0f;
 	// Use this for initialization
 	void Start () {
 
@@ -17,6 +18,14 @@ public class Cue : MonoBehaviour {
 				transform.up * speed,
 				ForceMode.VelocityChange);
 		}
+
+		this.GetComponent<Rigidbody> ().AddForce (
+			transform.right * Input.GetAxisRaw ("Horizontal") * accel,
+			ForceMode.Impulse);
+
+		this.GetComponent<Rigidbody> ().AddForce (
+			transform.forward * Input.GetAxisRaw ("Vertical") * accel,
+			ForceMode.Impulse);
 	}
 
 	void OnCollisionEnter(Collision collision) {
