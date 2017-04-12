@@ -30,7 +30,8 @@ public class Cue : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if ( collision.gameObject.tag == "Ball" ) {
-			Destroy(this.gameObject);
+			//Destroy(this.gameObject);
+			this.gameObject.SetActive(false);
 		}
 	}
 }

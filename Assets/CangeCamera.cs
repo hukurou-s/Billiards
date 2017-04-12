@@ -19,7 +19,7 @@ public class CangeCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("space")){
+		if(Input.GetKeyDown (KeyCode.Space)){
 			if(MainCam.enabled){
 				MainCam.enabled = false;
 				SubCam.enabled = true;
