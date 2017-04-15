@@ -19,34 +19,35 @@ public class Cue : MonoBehaviour {
 				ForceMode.VelocityChange);
 		}
 
-		if ( (Input.GetKey (KeyCode.LeftShift) && Input.GetKey (KeyCode.LeftAlt) ) ||
-			(Input.GetKey (KeyCode.RightShift) && Input.GetKey (KeyCode.RightAlt)) ) {
+		if ((Input.GetKey (KeyCode.LeftShift) && Input.GetKey (KeyCode.LeftAlt)) ||
+		    (Input.GetKey (KeyCode.RightShift) && Input.GetKey (KeyCode.RightAlt))) {
 			this.GetComponent<Rigidbody> ().AddForce (
-				transform.up * Input.GetAxisRaw ("Vertical") * accel,
+				transform.up * Input.GetAxisRaw ("Vertical") * (accel * -1),
 				ForceMode.Impulse);
 		} else if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
 			
-			this.gameObject.transform.Rotate(
+			this.gameObject.transform.Rotate (
 				0,
-				Input.GetAxis("Horizontal"),
-				Input.GetAxis("Vertical"),
+				Input.GetAxis ("Horizontal"),
+				Input.GetAxis ("Vertical")* -1,
 				Space.World
 			);
+		} else {
+
+			this.GetComponent<Rigidbody> ().AddForce (
+				transform.right * Input.GetAxisRaw ("Horizontal") * accel,
+				ForceMode.Impulse);
+
+			this.GetComponent<Rigidbody> ().AddForce (
+				transform.forward * Input.GetAxisRaw ("Vertical") * accel,
+				ForceMode.Impulse);
 		}
-
-		this.GetComponent<Rigidbody> ().AddForce (
-			transform.right * Input.GetAxisRaw ("Horizontal") * accel,
-			ForceMode.Impulse);
-
-		this.GetComponent<Rigidbody> ().AddForce (
-			transform.forward * Input.GetAxisRaw ("Vertical") * accel,
-			ForceMode.Impulse);
 	}
 
 	void OnCollisionEnter(Collision collision) {
 		if ( collision.gameObject.tag == "Ball" ) {
 			//Destroy(this.gameObject);
-			//this.gameObject.SetActive(false);
+			this.gameObject.SetActive(false);
 		}
 	}
 }
