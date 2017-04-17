@@ -6,9 +6,9 @@ public class Cue : MonoBehaviour {
 
 	private float speed = -400.0f;
 	private float accel = 1000.0f;
-	// Use this for initialization
-	void Start () {
 
+	void Start () {
+	
 	}
 
 	// Update is called once per frame
@@ -42,12 +42,13 @@ public class Cue : MonoBehaviour {
 				transform.forward * Input.GetAxisRaw ("Vertical") * accel,
 				ForceMode.Impulse);
 		}
+
 	}
 
 	void OnCollisionEnter(Collision collision) {
 		if ( collision.gameObject.tag == "Ball" ) {
-			//Destroy(this.gameObject);
-			this.gameObject.SetActive(false);
+			this.gameObject.SetActive (false);
+
 		}
 	}
 }
