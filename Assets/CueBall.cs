@@ -13,6 +13,12 @@ public class CueBall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if ( collision.gameObject.tag == "Pocket" ) {
+			this.gameObject.SetActive (false);
+		}
 	}
 }
