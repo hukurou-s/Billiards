@@ -6,13 +6,25 @@ public class Cue : MonoBehaviour {
 
 	private float speed = -400.0f;
 	private float accel = 1000.0f;
+	private Vector3 StartPosition;
+	private Quaternion StartRotation;
+
 
 	void Start () {
-	
+		StartPosition = this.transform.position;
+		StartRotation = this.transform.rotation;
+		//GetComponent<Transform> ().rotation = Quaternion.Euler(target.transform.localEulerAngles.x+15+90 , target.transform.localEulerAngles.y, target.transform.localEulerAngles.z);
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKey (KeyCode.R)) {
+			this.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			this.transform.position = StartPosition;
+			this.transform.rotation = StartRotation;
+		}
+
 		if (Input.GetKeyUp (KeyCode.Return)) {
 			this.GetComponent<Rigidbody> ().AddForce (
 				transform.up * speed,
