@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TurnController : MonoBehaviour {
 
+	//public int ballMoveFlag = 0;    // 0ならボールは操作できない
+	//public int cueMoveFlag = 1;    // 0ならCueは操作できない
 	private GameObject cue;
 	private GameObject cueBall;
 
@@ -20,12 +22,12 @@ public class TurnController : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.N)) {
 
-			if ( !cueBall.gameObject.activeSelf ) {
+			if (!cueBall.gameObject.activeSelf) {
 				cueBall.gameObject.SetActive (true);
+			} else {
+
+				cue.gameObject.SetActive (true);
 			}
-
-			cue.gameObject.SetActive (true);
-
 		}
 	}
 }
